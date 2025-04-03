@@ -54,7 +54,12 @@ async def grade(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     chart_filename = user_last_chart.get(user_id, "Unknown")
 
-    prompt = f"You are an English teacher. The student was given a chart titled: {chart_filename}.\n\nTheir writing:\n"""\n{user_input}\n"""\n\nPlease give a grade out of 10 and explain any grammar/clarity issues."
+    prompt = (
+    f"You are an English teacher. The student was given a chart titled: {chart_filename}.\n\n"
+    f"Their writing:\n\"\"\"\n{user_input}\n\"\"\"\n\n"
+    "Please give a grade out of 10 and explain any grammar/clarity issues."
+)
+
 
     try:
         response = openai.ChatCompletion.create(
